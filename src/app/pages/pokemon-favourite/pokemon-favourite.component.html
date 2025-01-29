@@ -1,0 +1,21 @@
+<app-base-layout [data]="pokemons">
+  <ion-grid class="mt-5">
+    <ion-row>
+      @for (pokemon of pokemons; track $index) {
+      <ion-col size="6" sizeMd="4">
+        <app-pokemon-card
+          [pokemon]="pokemon"
+          [isAddFavourite]="false"
+          (actionButton)="removeFromFavourites($event)"
+        ></app-pokemon-card>
+      </ion-col>
+      }
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" threshold="100px">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</app-base-layout>

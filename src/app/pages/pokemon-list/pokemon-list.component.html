@@ -1,0 +1,42 @@
+<app-base-layout [isLoading]="isLoading" [data]="pokemons">
+  <div slot="filter">
+    <ion-select
+      label="Filter by type"
+      placeholder="Select Type"
+      (ionChange)="filterByType($event.target.value)"
+    >
+      <ion-select-option value="">All</ion-select-option>
+      <ion-select-option [value]="type.name" *ngFor="let type of types">{{
+        type.name
+      }}</ion-select-option>
+    </ion-select>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      @for (pokemon of pokemons; track $index) {
+      <ion-col size="6" sizeMd="4">
+        <app-pokemon-card
+          [pokemon]="pokemon"
+          [isAddFavourite]="true"
+          (actionButton)="addToFavourites($event)"
+        ></app-pokemon-card>
+      </ion-col>
+      }
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" threshold="100px">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-alert
+    [isOpen]="isAlertOpen"
+    header="Success"
+    subHeader="Added to Favourites"
+    message="{{ alertMessage }}"
+    [buttons]="['OK']"
+    (didDismiss)="isAlertOpen = false"
+  ></ion-alert>
+</app-base-layout>

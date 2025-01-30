@@ -4,6 +4,11 @@ Aplikasi sederhana berbasis Ionic dan Angular yang menampilkan daftar Pokemon da
 
 ---
 
+## **Live Demo**
+
+Aplikasi ini bisa diakses langsung melalui URL berikut:
+https://pokedex-mmk2eqx74-suchronrizals-projects.vercel.app/pokemon-list
+
 ## **Requirements**
 
 Sebelum menjalankan aplikasi, pastikan Anda sudah menginstal:

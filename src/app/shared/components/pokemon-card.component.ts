@@ -35,7 +35,14 @@ import { IonicModule } from '@ionic/angular';
         size="small"
         [color]="isAddFavourite ? 'primary' : 'danger'"
         class="text-xs capitalize"
-        ><span *ngIf="isAddFavourite">❤️ Add Favourites</span>
+        ><div class="flex items-center gap-1" *ngIf="isAddFavourite">
+          <ion-icon
+            name="heart"
+            size="small"
+            [class]="styleFavourite"
+          ></ion-icon
+          >Add Favourites
+        </div>
         <span *ngIf="!isAddFavourite">Remove Favourites</span></ion-button
       >
     </div>
@@ -46,6 +53,7 @@ import { IonicModule } from '@ionic/angular';
 export class PokemonCardComponent {
   @Input() pokemon: any;
   @Input() isAddFavourite: boolean = true;
+  @Input() styleFavourite: string = '';
   @Output() actionButton = new EventEmitter<any>();
   addToFavourites(pokemon: any) {
     this.actionButton.emit(pokemon);

@@ -11,7 +11,6 @@
       }}</ion-select-option>
     </ion-select>
   </div>
-
   <ion-grid>
     <ion-row>
       @for (pokemon of pokemons; track $index) {
@@ -19,6 +18,9 @@
         <app-pokemon-card
           [pokemon]="pokemon"
           [isAddFavourite]="true"
+          [styleFavourite]="
+            isFavourite(pokemon) ? 'text-red-500' : ' text-slate-500'
+          "
           (actionButton)="addToFavourites($event)"
         ></app-pokemon-card>
       </ion-col>

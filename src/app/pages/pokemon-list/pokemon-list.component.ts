@@ -12,6 +12,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class PokemonListComponent implements OnInit {
   pokemons: any[] = [];
   allPokemons: any[] = [];
+  favourites: any[] = [];
   types: any[] = [];
   selectedType: string = '';
   offset: number = 0;
@@ -25,6 +26,10 @@ export class PokemonListComponent implements OnInit {
   ngOnInit() {
     this.generateItems();
     this.getPokemonTypes();
+
+    this.pokemonService.favourites$.subscribe((favourites) => {
+      this.favourites = favourites;
+    });
   }
 
   getPokemonTypes() {
@@ -110,11 +115,17 @@ export class PokemonListComponent implements OnInit {
   addToFavourites(pokemon: any) {
     this.isAlertOpen = false;
     if (pokemon) {
-      const isAdded = this.pokemonService.addFavourite(pokemon);
-      if (!isAdded) {
+      const isAlreadyAdded = this.isFavourite(pokemon);
+      if (!isAlreadyAdded) {
+        this.pokemonService.addFavourite(pokemon);
+      } else {
         this.isAlertOpen = true;
-        this.alertMessage = `${pokemon.name} added to favourites`;
+        this.alertMessage = `${pokemon.name} is already in favourites`;
       }
     }
+  }
+
+  isFavourite(pokemon: any): boolean {
+    return this.favourites.some((fav) => fav.name === pokemon.name);
   }
 }

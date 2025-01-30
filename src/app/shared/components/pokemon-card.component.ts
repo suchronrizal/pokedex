@@ -40,8 +40,7 @@ import { IonicModule } from '@ionic/angular';
             name="heart"
             size="small"
             [class]="styleFavourite"
-          ></ion-icon
-          >Add Favourites
+          ></ion-icon>
         </div>
         <span *ngIf="!isAddFavourite">Remove Favourites</span></ion-button
       >

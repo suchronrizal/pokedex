@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pokemon } from 'src/app/models/pokemon.model';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
   standalone: false,
 })
 export class PokemonFavouriteComponent implements OnInit {
-  pokemons: any[] = [];
+  pokemons: Pokemon[] = [];
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit() {
@@ -17,7 +18,7 @@ export class PokemonFavouriteComponent implements OnInit {
     });
   }
 
-  removeFromFavourites(pokemon: any) {
+  removeFromFavourites(pokemon: Pokemon) {
     this.pokemonService.removeFavourite(pokemon);
   }
 

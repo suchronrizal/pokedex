@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin, map, Observable, switchMap } from 'rxjs';
 import { Pokemon } from '../models/pokemon.model';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-  private baseUrl = 'https://pokeapi.co/api/v2';
+  private baseUrl = environment.baseUrl;
   private favouritesSubject = new BehaviorSubject<Pokemon[]>([]);
   favourites$ = this.favouritesSubject.asObservable();
   constructor(private http: HttpClient) {}
